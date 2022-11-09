@@ -25,7 +25,7 @@ namespace ToolsTests
 		ASSERT_EQ("", Tools::ToLocalString(L""));
 		ASSERT_EQ("123456789", Tools::ToLocalString(L"123456789"));
 		ASSERT_EQ(1, Tools::ToLocalString(L"1").size());
-		ASSERT_EQ(std::string("יאט"), Tools::ToLocalString(L"יאט"));
+		ASSERT_EQ(std::string("s"), Tools::ToLocalString(L"s"));
 	}
 
 	//---------------------------------------------------------------------
@@ -34,12 +34,12 @@ namespace ToolsTests
 		ASSERT_EQ(L"", Tools::LocalToWString(""));
 		ASSERT_EQ(L"123456789", Tools::LocalToWString("123456789"));
 		ASSERT_EQ(1, Tools::LocalToWString("1").size());
-		ASSERT_EQ(std::wstring(L"יאט"), Tools::LocalToWString("יאט"));
+		ASSERT_EQ(std::wstring(L"s"), Tools::LocalToWString("s"));
 	}
 
 	//---------------------------------------------------------------------
 	TEST(Tool, Uft8)
 	{
-		ASSERT_EQ(L"יאט", Tools::Utf8ToWString(Tools::ToUtf8String(L"יאט")));
+		ASSERT_EQ(L"s", Tools::Utf8ToWString(Tools::ToUtf8String(L"s")));
 	}
 }
