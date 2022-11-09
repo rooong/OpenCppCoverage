@@ -25,6 +25,7 @@
 #include "IDebugEventsHandler.hpp"
 
 #include "Tools/Tool.hpp"
+#include "StackWalker.h"
 
 namespace CppCoverage
 {
@@ -135,6 +136,17 @@ namespace CppCoverage
 		HANDLE hThread,
 		DWORD dwThreadId)
 	{
+		if (debugEvent.dwDebugEventCode == EXCEPTION_DEBUG_EVENT && debugEvent.u.Exception.dwFirstChance == 0)
+		{
+			DWORD dwProcessId = debugEvent.dwProcessId;
+			StackWalker stackWalker(dwProcessId, hProcess);
+			unsigned idThread = debugEvent.dwThreadId;
+			HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, false, idThread);
+			if (hThread != INVALID_HANDLE_VALUE && NULL != hThread)
+			{
+				stackWalker.ShowCallstack(hThread, NULL, NULL, NULL, false);
+			}
+		}
 		switch (debugEvent.dwDebugEventCode)
 		{
 			case EXIT_PROCESS_DEBUG_EVENT:
