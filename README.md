@@ -30,5 +30,9 @@ You can simply run the following command:
 
 For example, *MySourcePath* can be *MyProject*, if your sources are located in *C:\Dev\MyProject*.
 
+## Build
+1.download https://github.com/OpenCppCoverage/OpenCppCoverageThirdParty/releases/download/1.4.0/ThirdParty.1.4.0.nupkg
+2.powershell.exe -executionpolicy bypass -File InstallThirdPartyLibraries.ps2
+
 See [Getting Started](https://github.com/OpenCppCoverage/OpenCppCoverage/wiki) for more information about the usage.
 You can also have a look at [Command-line reference](https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/Command-line-reference).
